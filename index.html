@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>MercadoVivo — Tienda</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+
+  <!-- SDK Payphone v2.0: CSS y JS (type="module" requerido) -->
+  <link rel="stylesheet" href="https://cdn.payphonetodoesposible.com/box/v2.0/payphone-payment-box.css"/>
+  <script type="module" src="https://cdn.payphonetodoesposible.com/box/v2.0/payphone-payment-box.js"></script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">Mercado<span>Vivo</span></div>
+    <button class="cart-btn" id="cartToggleBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      Carrito
+      <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Productos frescos,<br>directo a tu puerta</h1>
+    <p>Selecciona lo que necesitas y completa tu compra en segundos.</p>
+  </section>
+
+  <!-- PRODUCTS GRID -->
+  <div class="products-grid" id="productsGrid"></div>
+
+  <!-- CART OVERLAY -->
+  <div class="overlay" id="cartOverlay">
+    <div class="cart-panel">
+      <div class="cart-header">
+        <h2>Tu carrito</h2>
+        <button class="close-btn" id="cartCloseBtn">✕</button>
+      </div>
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-summary" id="cartSummary" style="display:none">
+        <div class="summary-row"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+        <div class="summary-row"><span>Envío</span><span>Gratis</span></div>
+        <div class="summary-row total"><span>Total</span><span id="totalDisplay">$0.00</span></div>
+        <button class="pay-btn" id="payBtn">Proceder al pago →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAYMENT MODAL -->
+  <div class="modal-overlay" id="payModal">
+    <div class="modal">
+      <div class="modal-icon">🛒</div>
+      <h3>Confirmar pedido</h3>
+      <p>Revisa el total antes de pagar.</p>
+      <div class="modal-total" id="modalTotal">$0.00</div>
+      <div class="modal-actions">
+        <button class="modal-cancel" id="modalCancelBtn">Cancelar</button>
+        <button class="modal-confirm" id="modalConfirmBtn">✓ Pagar ahora</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAJITA DE PAGO PAYPHONE -->
+  <!-- Este contenedor se muestra cuando el usuario confirma el pago -->
+  <div id="pp-button-wrapper" style="
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 400;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+  ">
+    <!-- Botón para cerrar la cajita -->
+    <button id="ppBoxCloseBtn" style="
+      background: white;
+      border: none;
+      border-radius: 50px;
+      padding: 8px 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: #555;
+    ">✕ Cancelar pago</button>
+
+    <!-- Aquí Payphone renderiza su cajita de pago -->
+    <div id="pp-button"></div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast"></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
