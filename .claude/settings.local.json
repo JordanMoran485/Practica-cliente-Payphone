@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Read(//c/Users/arman/AppData/Roaming/Claude/local-agent-mode-sessions/skills-plugin/c2ed32e9-9bbb-44fb-9d3c-80c7ea16e3a2/1657b983-14ba-4497-a4fb-0880bb043aaa/skills/docx/**)",
-      "Bash(node -e \"require\\('docx'\\); console.log\\('ok'\\)\")"
-    ]
-  }
-}
